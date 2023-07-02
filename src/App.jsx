@@ -2,10 +2,10 @@ import React from 'react'
 import Routes from "./routes/Routes"
 const App = () => {
   return (
-    <div>
-      <Routes/>
+    <div className="bg-[#FCFCFC]">
+      <Routes />
     </div>
-  )
+  );
 }
 
 export default App
