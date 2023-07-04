@@ -3,6 +3,11 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        sans: "Poppins",
+        serif: "Roboto",
+        mono: "Montserrat",
+      },
       colors: {
         brand: "#EBC500",
         header: "#2D2B2B",

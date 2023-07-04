@@ -7,14 +7,14 @@ export const userApi = createApi({
   }),
   tagTypes: ["user"],
   endpoints: (builder) => ({
-    getProducts: builder.mutation({
+    getProducts: builder.query({
       query: (token) => ({
-        url: "/customer/fetch/products",
-        method: "GET",
+        url: "/customer/fetch/products/?min=10",
         headers: { authorization: `Bearer ${token}` },
+        method: "GET",
       }),
       providesTags: ["user"],
     }),
   }),
 });
-export const { useGetProductsMutation } = userApi;
+export const { useGetProductsQuery } = userApi;

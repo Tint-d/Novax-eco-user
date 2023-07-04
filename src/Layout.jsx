@@ -1,14 +1,14 @@
-import { Box, Flex } from "@mantine/core";
 import React from "react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import "./css/herosection.css";
 
 const Layout = ({ children }) => {
   return (
-    <div className="">
+    <div>
       <Navbar />
-      <Box className=" min-h-[45vh]" p={20}>{children}</Box>
-      <Footer/>
+      <div className="hero-linear">{children}</div>
+      <Footer />
     </div>
   );
 };

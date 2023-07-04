@@ -1,0 +1,5 @@
+.filter {
+  -webkit-filter: blur(2px) brightness(76%) contrast(129%) saturate(125%)
+    sepia(19%);
+  filter: blur(2px) brightness(76%) contrast(129%) saturate(125%) sepia(19%);
+}
