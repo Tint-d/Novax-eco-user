@@ -52,9 +52,7 @@ const Register = () => {
       toast.success(data.message);
       dispatch(addUser(data));
 
-      setTimeout(() => {
-        navigate("/");
-      }, 2000);
+      navigate("/login");
     } else if (error) {
       toast.error("Registration fail");
     }
@@ -81,7 +79,7 @@ const Register = () => {
 
   return (
     <div className="w-full flex md:flex-row flex-col-reverse items-center authScrollbar ">
-      <Toaster position="top-center" />
+      <Toaster position="bottom-center" />
 
       <div className="md:w-[50%] w-full min-h-screen py-[30px]  sm:px-[10px] px-[5px]">
         <form

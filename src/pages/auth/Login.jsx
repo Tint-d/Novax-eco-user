@@ -42,12 +42,9 @@ const Login = () => {
 
     if (data?.token) {
       toast.success(data.message);
-
       dispatch(addUser(data));
 
-      setTimeout(() => {
-        navigate("/");
-      }, 2000);
+      navigate("/");
     } else if (error) {
       toast.error(error.message);
     }
@@ -68,13 +65,13 @@ const Login = () => {
 
   const handleGoogleSignIn = () => {
     signInWithRedirect(auth, provider).then((data) => {
-      console.log(data);
+      // console.log(data);
     });
   };
 
   return (
     <div className="w-full flex md:flex-row flex-col-reverse items-center authScrollbar ">
-      <Toaster position="top-center" />
+      <Toaster position="bottom-center" />
 
       <div className="md:w-[50%] w-full  min-h-screen py-[30px]  sm:px-[10px] px-[5px]">
         <form
