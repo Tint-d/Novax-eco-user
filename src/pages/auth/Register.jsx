@@ -64,8 +64,8 @@ const Register = () => {
     const oAuth = getAuth();
     getRedirectResult(oAuth)
       .then((result) => {
-        if (result) {
-          console.log(result);
+        if (result?.user) {
+          navigate("/");
         }
       })
       .catch((error) => {

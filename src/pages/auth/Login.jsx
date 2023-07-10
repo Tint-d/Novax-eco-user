@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Lottie from "lottie-react";
 import { Paper, Checkbox, Anchor, Button } from "@mantine/core";
 import { useForm } from "@mantine/form";
@@ -15,6 +15,8 @@ import { useDispatch } from "react-redux";
 import { addUser } from "../../redux/services/authSlice";
 import { BiLoaderAlt } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
+import { getAuth, getRedirectResult, signInWithRedirect } from "firebase/auth";
+import { auth, provider } from "../../firebase/config";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -49,6 +51,25 @@ const Login = () => {
     } else if (error) {
       toast.error(error.message);
     }
+  };
+
+  useEffect(() => {
+    const oAuth = getAuth();
+    getRedirectResult(oAuth)
+      .then((result) => {
+        if (result?.user) {
+          navigate("/");
+        }
+      })
+      .catch((error) => {
+        // ...
+      });
+  }, []);
+
+  const handleGoogleSignIn = () => {
+    signInWithRedirect(auth, provider).then((data) => {
+      console.log(data);
+    });
   };
 
   return (
@@ -117,6 +138,7 @@ const Login = () => {
             </button>
 
             <Button
+              onClick={handleGoogleSignIn}
               leftIcon={<IconBrandGoogle />}
               classNames={{
                 root: "bg-white border border-[#242424] h-[50px] my-3 rounded-xl hover:border-[#FFD93D] hover:bg-white ",
