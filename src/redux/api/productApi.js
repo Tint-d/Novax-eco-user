@@ -8,8 +8,8 @@ export const productApi = createApi({
   tagTypes: ["product"],
   endpoints: (builder) => ({
     getProduct: builder.query({
-      query: (token) => ({
-        url: "/products",
+      query: ({ token, page }) => ({
+        url: `/products?page=${page}`,
         headers: { authorization: `Bearer ${token}` },
       }),
       providesTags: ["product"],
