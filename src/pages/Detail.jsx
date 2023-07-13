@@ -1,32 +1,49 @@
-import React, { useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import Layout from "../Layout";
 import { useLocation } from "react-router-dom";
 import { BiMinus, BiPlus } from "react-icons/bi";
 import SimilarProducts from "../components/SimilarProducts";
 import { useGetDetailsProductQuery } from "../api/userApi";
 import { useAddToCartMutation } from "../api/userAction";
+import ReactLoading from "react-loading";
 
 const Detail = () => {
   const [item_count, setItem_count] = useState(1);
   const location = useLocation();
   const detailId = location?.state?.id;
   const token = "65|iRd7eZ8g8KYaNHpkkTWaQ25GOqgEZkPsGLgjHiAp";
-  const { data } = useGetDetailsProductQuery({ token, detailId });
-  // const [updateCount] = useGetAddToCartQuery({ token });
+  const { data, isLoading } = useGetDetailsProductQuery({ token, detailId });
   const product = data?.product;
   const product_id = product?.id;
-  const [addToCart, error] = useAddToCartMutation();
-  console.log(error);
+  const [addToCart] = useAddToCartMutation();
   const value = { product_id, item_count };
-  console.log(value);
-  const add = () => {
+  const add = useCallback(() => {
     setItem_count(item_count + 1);
-  };
-  const minus = () => {
+  }, [item_count]);
+  const minus = useCallback(() => {
     if (item_count > 1) {
       setItem_count(item_count - 1);
     }
-  };
+  }, [item_count]);
+  const similarProducts = useMemo(() => {
+    return (
+      <div className="">
+        <SimilarProducts key={product?.id} category_id={product?.category_id} />
+      </div>
+    );
+  }, [product]);
+  if (isLoading) {
+    return (
+      <div className=" min-h-screen flex justify-center items-center">
+        <ReactLoading
+          type={"spinningBubbles"}
+          color={"#EBC500"}
+          height={"70px"}
+          width={"70px"}
+        />
+      </div>
+    );
+  }
   return (
     <Layout>
       <div className=" min-h-screen bg-white">
@@ -92,12 +109,7 @@ const Detail = () => {
             </div>
           </div>
         </div>
-        <div className="">
-          <SimilarProducts
-            key={product?.id}
-            category_id={product?.category_id}
-          />
-        </div>
+        {similarProducts}
       </div>
     </Layout>
   );

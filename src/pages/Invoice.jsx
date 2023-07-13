@@ -11,9 +11,8 @@ const Invoice = () => {
   const { data } = useGetAddToCartQuery(token);
   // const user = data[0]?.customer_name;
   // const customerId = data[0]?.customer_id;
-  console.log(data);
+  console.log("Invoice");
 
-  const [addOrder] = useAddOrderMutation();
   // const { data: order } = useRequestOrderQuery({ token });
   const { data: orderList } = useGetOrdersQuery({ token });
   // const orderId = orderList[0]?.order_id;
@@ -102,6 +101,7 @@ const Invoice = () => {
                   </div>
                 ) : (
                   <OrderForm />
+                  
                 )}
               </div>
             </div>

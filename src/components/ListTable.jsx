@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { BiPlus, BiMinus } from "react-icons/bi";
 import { FiTrash2 } from "react-icons/fi";
 import { useDeleteProductMutation } from "../api/userAction";
@@ -7,20 +7,20 @@ const ListTable = (props) => {
   const token = "65|iRd7eZ8g8KYaNHpkkTWaQ25GOqgEZkPsGLgjHiAp";
   const { product_name, total_price, item_count, cart_id } = props;
   const [count, setItem_count] = useState(item_count);
-  console.log(count);
-  const [deleteProduct, error] = useDeleteProductMutation();
+  console.log(`Running${product_name}`);
+  const [deleteProduct] = useDeleteProductMutation();
   const [addCount] = useAddCountMutation();
-  console.log(cart_id);
-  const add = () => {
+
+  const add = useCallback(() => {
     setItem_count(count + 1);
     addCount({ token, cart_id, action: 1 });
-  };
-  const minus = () => {
+  }, [item_count]);
+  const minus = useCallback(() => {
     if (count > 1) {
       setItem_count(count - 1);
       addCount({ token, cart_id, action: 0 });
     }
-  };
+  }, [item_count]);
 
   return (
     <div className="flex justify-between py-3">

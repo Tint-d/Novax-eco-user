@@ -21,8 +21,8 @@ export const userApi = createApi({
       providesTags: ["user"],
     }),
     getCategoryProducts: builder.query({
-      query: ({ token, value }) => ({
-        url: `/products?category=${value}`,
+      query: ({ token, value, count }) => ({
+        url: `/products?category=${value}&page=${count}`,
         headers: { authorization: `Bearer ${token}` },
       }),
       providesTags: ["user"],

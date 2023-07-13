@@ -3,7 +3,7 @@ export const addToCount = createApi({
   reducerPath: "addToCount",
 
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://novaxtechno.tech/api/v1/customer",
+    baseUrl: "https://novaxtechno.tech/api/v1/customer",
   }),
   tagTypes: ["update"],
   endpoints: (builder) => ({

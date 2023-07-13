@@ -7,6 +7,7 @@ import { useGetCategoryProductsQuery } from "../api/userApi";
 import ProductsCard from "./ProductsCard";
 const SimilarProducts = ({ category_id }) => {
   const [id, setId] = useState();
+  console.log("similar working");
   const token = "65|iRd7eZ8g8KYaNHpkkTWaQ25GOqgEZkPsGLgjHiAp";
   const check = (category_id) => {
     switch (category_id) {
