@@ -6,8 +6,6 @@ import { useNavigate } from "react-router-dom";
 import { IconBrandGoogle } from "@tabler/icons-react";
 import toast, { Toaster } from "react-hot-toast";
 import { BiLoaderAlt } from "react-icons/bi";
-import { getAuth, signInWithRedirect } from "firebase/auth";
-import { getRedirectResult, GoogleAuthProvider } from "firebase/auth";
 import { useDispatch } from "react-redux";
 
 import InputText from "../../components/auth/InputText";
@@ -17,6 +15,7 @@ import authAnimation from "../../assets/auth-animation.json";
 import { paths } from "../../routes/path";
 import { useRegisterAccountMutation } from "../../redux/api/authApi";
 import { addUser } from "../../redux/services/authSlice";
+import { getRedirectResult, getAuth, signInWithRedirect } from "firebase/auth";
 import { auth, provider } from "../../firebase/config";
 
 const Register = () => {
