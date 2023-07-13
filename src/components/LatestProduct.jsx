@@ -6,15 +6,16 @@ import "swiper/css";
 import "../css/slide.css";
 import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css/navigation";
+import { useGetLatestProductsQuery } from "../api/userApi";
 const LatestProducts = () => {
-  const products = data[0].data.data;
+  const token = "65|iRd7eZ8g8KYaNHpkkTWaQ25GOqgEZkPsGLgjHiAp";
+  const { data } = useGetLatestProductsQuery({ token });
+  const product = data?.data?.data;
   return (
     <div className="bg-white py-3">
       <div className="  container px-10 pb-5 mx-auto ">
         <div className=" relative py-3">
-          <h2 className="text-[30px] font-bold text-header">
-            Latest Products
-          </h2>
+          <h2 className="text-[30px] font-bold text-header">Latest Products</h2>
           <div className="px-10 py-[2px] absolute bg-brand"></div>
         </div>
         <div className="py-2">
@@ -28,7 +29,7 @@ const LatestProducts = () => {
             modules={[Pagination, Navigation]}
             className="mySwiper text-brand swiper-container "
           >
-            {products?.map((product) => (
+            {product?.map((product) => (
               <SwiperSlide key={product.id}>
                 <ProductsCard {...product} />
               </SwiperSlide>

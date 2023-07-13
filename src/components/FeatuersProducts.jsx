@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { data } from "../data/data";
 import ProductsCard from "./ProductsCard";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -6,11 +6,11 @@ import "swiper/css";
 import "../css/slide.css";
 import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css/navigation";
+import { useGetProductsQuery } from "../api/userApi";
 const FeatuersProducts = () => {
-  // const token = "65|iRd7eZ8g8KYaNHpkkTWaQ25GOqgEZkPsGLgjHiAp";
-  // const { data:product } = useGetProductsQuery(token);
-  // console.log(product);
-  const products = data[0].data.data;
+  const token = "65|iRd7eZ8g8KYaNHpkkTWaQ25GOqgEZkPsGLgjHiAp";
+  const { data } = useGetProductsQuery({ token });
+  const product = data?.data?.data;
   return (
     <div className="bg-white py-3 ">
       <div className="  container px-10 pb-5 mx-auto ">
@@ -31,7 +31,7 @@ const FeatuersProducts = () => {
             modules={[Pagination, Navigation]}
             className="mySwiper text-brand swiper-container "
           >
-            {products?.map((product) => (
+            {product?.map((product) => (
               <SwiperSlide key={product.id}>
                 <ProductsCard {...product} />
               </SwiperSlide>

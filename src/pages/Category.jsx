@@ -1,9 +1,17 @@
-import React from 'react'
+import React from "react";
+import Sidebar from "../components/Sidebar";
+import Layout from "../Layout";
+import CategoryProduct from "../components/CategoryProduct";
 
 const Category = () => {
   return (
-    <div>Category</div>
-  )
-}
+    <Layout>
+      <div className="min-h-screen flex relative bg-white">
+        <Sidebar />
+        <CategoryProduct />
+      </div>
+    </Layout>
+  );
+};
 
-export default Category
+export default Category;

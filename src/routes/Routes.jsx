@@ -1,17 +1,21 @@
 import React, { Suspense, lazy } from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { paths } from "./path";
-const Category = lazy(() => import ('../pages/Category'))
+import Invoice from "../pages/Invoice";
+import Searchpage from "../components/Searchpage";
+const Category = lazy(() => import("../pages/Category"));
 const Home = lazy(() => import("../pages/Home"));
 const Login = lazy(() => import("../pages/auth/Login"));
 const Register = lazy(() => import("../pages/auth/Register"));
 const NotFound = lazy(() => import("../pages/NotFound"));
-
+const Detail = lazy(() => import("../pages/Detail"));
 const Routes = () => {
-    const fallback = <p className=" flex h-screen items-center justify-center">loading...</p>
+  const fallback = (
+    <p className=" flex h-screen items-center justify-center">loading...</p>
+  );
   const router = createBrowserRouter([
     {
-      path:paths.Login,
+      path: paths.Login,
       element: (
         <Suspense fallback={fallback}>
           <Login />
@@ -43,10 +47,34 @@ const Routes = () => {
       ),
     },
     {
+      path: paths.Detail,
+      element: (
+        <Suspense fallback={fallback}>
+          <Detail />
+        </Suspense>
+      ),
+    },
+    {
       path: "*",
       element: (
         <Suspense>
           <NotFound />
+        </Suspense>
+      ),
+    },
+    {
+      path: paths.Invoice,
+      element: (
+        <Suspense>
+          <Invoice />
+        </Suspense>
+      ),
+    },
+    {
+      path: paths.Search,
+      element: (
+        <Suspense>
+          <Searchpage />
         </Suspense>
       ),
     },
