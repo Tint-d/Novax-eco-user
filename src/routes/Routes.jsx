@@ -3,6 +3,8 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { paths } from "./path";
 import Invoice from "../pages/Invoice";
 import Searchpage from "../components/Searchpage";
+import About from "../pages/About";
+import Contact from "../pages/Contact";
 const Category = lazy(() => import("../pages/Category"));
 const Home = lazy(() => import("../pages/Home"));
 const Login = lazy(() => import("../pages/auth/Login"));
@@ -63,6 +65,14 @@ const Routes = () => {
       ),
     },
     {
+      path: "/contact",
+      element: (
+        <Suspense>
+          <Contact />
+        </Suspense>
+      ),
+    },
+    {
       path: paths.Invoice,
       element: (
         <Suspense>
@@ -75,6 +85,14 @@ const Routes = () => {
       element: (
         <Suspense>
           <Searchpage />
+        </Suspense>
+      ),
+    },
+    {
+      path: paths.About,
+      element: (
+        <Suspense>
+          <About />
         </Suspense>
       ),
     },

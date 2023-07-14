@@ -9,12 +9,13 @@ const ListTable = (props) => {
   const [count, setItem_count] = useState(item_count);
   console.log(`Running${product_name}`);
   const [deleteProduct] = useDeleteProductMutation();
-  const [addCount] = useAddCountMutation();
+  const [addCount, error] = useAddCountMutation();
+  console.log(error);
 
-  const add = useCallback(() => {
+  const add = () => {
     setItem_count(count + 1);
     addCount({ token, cart_id, action: 1 });
-  }, [item_count]);
+  };
   const minus = useCallback(() => {
     if (count > 1) {
       setItem_count(count - 1);

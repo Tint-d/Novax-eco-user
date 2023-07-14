@@ -12,7 +12,7 @@ const Invoice = () => {
   // const user = data[0]?.customer_name;
   // const customerId = data[0]?.customer_id;
   console.log("Invoice");
-
+  console.log(data);
   // const { data: order } = useRequestOrderQuery({ token });
   const { data: orderList } = useGetOrdersQuery({ token });
   // const orderId = orderList[0]?.order_id;
@@ -21,6 +21,7 @@ const Invoice = () => {
   const time = new Date();
   const date = time.toLocaleString();
   const [show, setShow] = useState(true);
+  console.log(data);
 
   return (
     <Layout>
@@ -101,7 +102,6 @@ const Invoice = () => {
                   </div>
                 ) : (
                   <OrderForm />
-                  
                 )}
               </div>
             </div>

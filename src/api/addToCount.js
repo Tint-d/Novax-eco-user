@@ -10,7 +10,7 @@ export const addToCount = createApi({
     addCount: builder.mutation({
       query: ({ token, cart_id, action }) => ({
         url: `/add_to_cart/${cart_id}`,
-        body: action,
+        body: {action},
         headers: { authorization: `Bearer ${token}` },
         method: "PUT",
       }),

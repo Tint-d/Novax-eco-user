@@ -5,12 +5,15 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { MdAddShoppingCart } from "react-icons/md";
 import "../css/nav.css";
 import { useSearchProductQuery } from "../api/userApi";
+import NavProfile from "./NavProfile";
+import { useGetAddToCartQuery } from "../api/userAction";
 
 const Navbar = () => {
   const [value, setValue] = useState();
   const navigate = useNavigate();
-  // const token = "65|iRd7eZ8g8KYaNHpkkTWaQ25GOqgEZkPsGLgjHiAp";
+  const token = "65|iRd7eZ8g8KYaNHpkkTWaQ25GOqgEZkPsGLgjHiAp";
   // const { data } = useSearchProductQuery({ token, value });
+
   const submitHandler = (e) => {
     e.preventDefault();
     navigate("/search", { state: { value } });
@@ -42,27 +45,26 @@ const Navbar = () => {
               Products
             </h2>
           </NavLink>
-          <NavLink to="/">
+          <NavLink to="/about">
             <h2 className=" text-[16px] yellow py-2 capitalize font-medium text-normal">
               About
             </h2>
           </NavLink>
-          <NavLink to="/">
+          <NavLink to="/contact">
             <h2 className=" text-[16px] yellow py-2 capitalize font-medium text-normal">
               Contact
             </h2>
           </NavLink>
 
           <NavLink to="/invoice">
-            <MdAddShoppingCart className=" yellow text-xl  text-normal" />
+            <div className=" relative">
+              <div className=" w-[25px] absolute h-[25px] top-[-20px] right-[-10px] rounded-full bg-brand  text-white font-bold flex items-center justify-center">
+                1
+              </div>
+              <MdAddShoppingCart className=" yellow text-2xl  text-normal" />
+            </div>
           </NavLink>
-          <div>
-            <img
-              src="https://i.pinimg.com/236x/01/bc/5d/01bc5d2ab7415af42243fda73385a2c6.jpg"
-              alt=""
-              className=" w-[50px] h-[50px] rounded-full"
-            />
-          </div>
+          <NavProfile />
         </div>
       </div>
     </div>

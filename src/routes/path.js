@@ -7,4 +7,5 @@ export const paths = {
   Detail: "/detail/:id",
   Invoice: `/invoice`,
   Search: `/search`,
+  About: `/about`,
 };
