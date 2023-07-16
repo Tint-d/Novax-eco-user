@@ -10,8 +10,8 @@ const Footer = () => {
     const year=date.getFullYear();
   return (
     <div className=" bg-header">
-      <div className=" container  py-5 flex justify-around mx-auto px-10 ">
-        <div className=" w-3/12 flex  items-center">
+      <div className=" container  py-5 flex gap-y-5  flex-wrap justify-around mx-auto md:px-5 px-2 lg:px-10 ">
+        <div className=" md:w-3/12 w-10/12  flex  items-center">
           <div className="">
             <h2 className=" text-[30px] text-brand  font-bold">NovaX</h2>
             <p className=" text-[15px] text-white/80 font-medium">
@@ -20,7 +20,7 @@ const Footer = () => {
             </p>
           </div>
         </div>
-        <div className=" w-3/12 flex flex-col">
+        <div className="md:w-3/12 w-10/12 flex flex-col">
           <h2 className=" text-white text-[20px] font-bold uppercase">
             Contact
           </h2>
@@ -42,7 +42,7 @@ const Footer = () => {
             <h2 className=" text-white text-[15px]">novax@gmail.com</h2>
           </div>
         </div>
-        <div className="  w-3/12 flex flex-col">
+        <div className="  md:w-3/12 w-10/12 flex flex-col">
           <h2 className=" text-white text-[20px] font-bold uppercase">
             Follow Us
           </h2>
@@ -62,7 +62,8 @@ const Footer = () => {
       </div>
       <div className=" container mx-auto px-10 flex border-t-2 border-white justify-center py-5">
         <div className=" text-[18px] font-medium text-white">
-          Copyright ©{year}<span className=" text-brand"> NovaX</span> .All right reserved
+          Copyright ©{year}
+          <span className=" text-brand"> NovaX</span> .All right reserved
         </div>
       </div>
     </div>

@@ -7,8 +7,11 @@ import "../css/nav.css";
 import { useSearchProductQuery } from "../api/userApi";
 import NavProfile from "./NavProfile";
 import { useGetAddToCartQuery } from "../api/userAction";
-
+import { RiListUnordered } from "react-icons/ri";
+import Menubar from "./Menubar";
 const Navbar = () => {
+  const [hide, setHide] = useState(false);
+
   const [value, setValue] = useState();
   const navigate = useNavigate();
   const token = "65|iRd7eZ8g8KYaNHpkkTWaQ25GOqgEZkPsGLgjHiAp";
@@ -20,11 +23,16 @@ const Navbar = () => {
   };
 
   return (
-    <div className=" bg-white">
-      <div className=" container items-center py-2 flex justify-between mx-auto px-10 ">
+    <div className=" bg-white sticky top-0 z-[1000]">
+      <div className="  container items-center flex-wrap py-2 flex justify-between mx-auto px-3 lg:px-10 ">
         <h2 className=" text-brand font-bold text-[28px]">NovaX</h2>
-        <form onSubmit={submitHandler}>
-          <div className=" w-[300px]">
+        <div onClick={() => setHide(!hide)} className=" md:hidden block">
+          <RiListUnordered className=" text-2xl" />
+        </div>
+        {hide && <Menubar />}
+
+        <form className=" mx-auto py-2" onSubmit={submitHandler}>
+          <div className=" md:w-[200px] w-[350px]  lg:w-[300px]">
             <Input
               onChange={(e) => setValue(e.target.value)}
               icon={<BsSearch />}
@@ -34,7 +42,7 @@ const Navbar = () => {
             />
           </div>
         </form>
-        <div className=" flex gap-10 justify-around items-center">
+        <div className=" hidden  md:flex lg:gap-10 md:gap-5 justify-around items-center">
           <NavLink to="/">
             <h2 className=" text-[16px] yellow py-2 capitalize  font-medium text-normal">
               Home

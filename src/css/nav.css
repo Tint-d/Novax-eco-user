@@ -1,3 +1,7 @@
 a.active .yellow {
   border-bottom: 3px solid #ebc500;
 }
+
+a.active .yellow-text {
+  color: #ebc500;
+}

@@ -36,7 +36,7 @@ export const userApi = createApi({
     }),
     searchProduct: builder.query({
       query: ({ token, value }) => ({
-        url: `/products/?search=${value}`,
+        url: `/products?search=${value}`,
         headers: { authorization: `Bearer ${token}` },
       }),
       providesTags: ["user"],

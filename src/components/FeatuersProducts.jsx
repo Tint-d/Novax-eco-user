@@ -7,17 +7,21 @@ import "../css/slide.css";
 import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css/navigation";
 import { useGetProductsQuery } from "../api/userApi";
+import AnimationLayout from "../AnimationLayout";
 const FeatuersProducts = () => {
   const token = "65|iRd7eZ8g8KYaNHpkkTWaQ25GOqgEZkPsGLgjHiAp";
   const { data } = useGetProductsQuery({ token });
   const product = data?.data?.data;
   return (
     <div className="bg-white py-3 ">
-      <div className="  container px-10 pb-5 mx-auto ">
+      <div className=" container md:px-5 px-3 lg:px-10 pb-5 mx-auto ">
         <div className=" relative py-3">
-          <h2 className="text-[30px] font-bold text-header">
-            Featured Products
-          </h2>
+          <AnimationLayout>
+            <h2 className="text-[30px] font-bold text-header">
+              Featured Products
+            </h2>
+          </AnimationLayout>
+
           <div className="px-10 py-[2px] absolute bg-brand"></div>
         </div>
         <div className="py-2">

@@ -8,7 +8,7 @@ import LatestProducts from "../components/LatestProduct";
 const Home = () => {
   return (
     <Layout>
-      <HeroSection />
+      <HeroSection /> 
       <FeatuersProducts />
       <DiscountSection />
       <LatestProducts />

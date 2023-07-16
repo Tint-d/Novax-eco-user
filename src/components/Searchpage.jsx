@@ -8,9 +8,9 @@ const Searchpage = () => {
 
   const location = useLocation();
   const value = location?.state?.value;
-  const { data } = useSearchProductQuery({ token, value });
+  const { data, error } = useSearchProductQuery({ token, value });
   console.log(value);
-  console.log(data);
+  console.log(error);
   return <Layout>Search</Layout>;
 };
 
