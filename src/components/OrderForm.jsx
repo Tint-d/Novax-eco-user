@@ -4,7 +4,7 @@ import { useForm } from "@mantine/form";
 import { useAddOrderMutation } from "../api/orderRequest";
 import { useRequestOrderQuery } from "../api/userAction";
 
-const OrderForm = () => {
+const OrderForm = (close) => {
   const token = "65|iRd7eZ8g8KYaNHpkkTWaQ25GOqgEZkPsGLgjHiAp";
   console.log("OrderForm");
   const form = useForm({
@@ -27,13 +27,14 @@ const OrderForm = () => {
   console.log(form.values);
   return (
     <div>
-      <div className="w-[350px] mx-auto overflow-hidden">
+      <div className="md:min-w-[350px] min-w-[300px] mx-auto overflow-hidden">
         <form
           onSubmit={form.onSubmit(async (values, e) => {
             try {
               e.preventDefault();
               const data = await addOrder({ token, values });
               console.log(data);
+              close();
             } catch (e) {
               console.log(e);
             }
@@ -58,12 +59,15 @@ const OrderForm = () => {
             {...form.getInputProps("phone_number")}
           />
           <FileInput
-            mt="sm"
+            my="sm"
             label="Payment Photo"
             placeholder="Payment Photo"
             {...form.getInputProps("payment_photo")}
           />
-          <button className="w-[350px] rounded py-2 mt-4 bg-brand text-[13px] font-semibold text-white">
+          <button
+            type="submit"
+            className=" w-full rounded py-2 mt-4 bg-brand text-[13px] font-semibold text-white"
+          >
             Order Now
           </button>
         </form>

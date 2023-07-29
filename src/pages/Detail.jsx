@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import Layout from "../Layout";
 import { useLocation } from "react-router-dom";
 import { BiMinus, BiPlus } from "react-icons/bi";
@@ -6,17 +6,24 @@ import SimilarProducts from "../components/SimilarProducts";
 import { useGetDetailsProductQuery } from "../api/userApi";
 import { useAddToCartMutation } from "../api/userAction";
 import ReactLoading from "react-loading";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Detail = () => {
   const [item_count, setItem_count] = useState(1);
   const location = useLocation();
   const detailId = location?.state?.id;
-  const token = "65|iRd7eZ8g8KYaNHpkkTWaQ25GOqgEZkPsGLgjHiAp";
-  const { data, isLoading } = useGetDetailsProductQuery({ token, detailId });
+  const { data, isLoading } = useGetDetailsProductQuery({ detailId });
   const product = data?.product;
   const product_id = product?.id;
   const [addToCart] = useAddToCartMutation();
-  const value = { product_id, item_count };
+  const [disable, setDisable] = useState(true);
+  const value = { item_count, product_id };
+
+  console.log(value);
+  useEffect(() => {
+    setDisable(true);
+  }, [product_id]);
   const add = useCallback(() => {
     setItem_count(item_count + 1);
   }, [item_count]);
@@ -47,7 +54,8 @@ const Detail = () => {
   return (
     <Layout>
       <div className=" min-h-screen bg-white">
-        <div className=" container flex justify-center items-center py-5  mx-auto px-10">
+        <div className="container flex justify-center items-center py-5  mx-auto px-10">
+          <ToastContainer />
           <div className=" flex ">
             <div className=" w-[400px]">
               <img
@@ -94,17 +102,36 @@ const Detail = () => {
                     className=" text-[16px] font-medium text-header"
                   />
                 </div>
-                <button
-                  onClick={() =>
-                    addToCart({
-                      token,
-                      value,
-                    })
-                  }
-                  className=" px-4 py-2 bg-[#EBC500] text-white text-[13px] rounded-lg font-semibold"
-                >
-                  Add To Cart
-                </button>
+                <div className="">
+                  {disable ? (
+                    <button
+                      onClick={() => {
+                        setDisable(false);
+                        addToCart({
+                          value,
+                        });
+                        setItem_count(1);
+                        toast("Added", {
+                          position: "top-right",
+                          autoClose: 2000,
+                          hideProgressBar: false,
+                          closeOnClick: true,
+                          pauseOnHover: true,
+                          draggable: true,
+                          progress: undefined,
+                          theme: "light",
+                        });
+                      }}
+                      className="  px-4 py-2 bg-[#EBC500] text-white text-[13px] rounded-lg font-semibold"
+                    >
+                      Add To Cart
+                    </button>
+                  ) : (
+                    <button className="  px-4 py-2 bg-[#e43f3f] text-white text-[13px] rounded-lg font-semibold">
+                      Added
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
           </div>

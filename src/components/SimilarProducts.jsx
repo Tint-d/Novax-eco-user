@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import "swiper/css/navigation";
+
 import "../css/slide.css";
 import { Navigation, Pagination } from "swiper/modules";
 import { useGetCategoryProductsQuery } from "../api/userApi";
@@ -8,7 +10,6 @@ import ProductsCard from "./ProductsCard";
 const SimilarProducts = ({ category_id }) => {
   const [id, setId] = useState();
   console.log("similar working");
-  const token = "65|iRd7eZ8g8KYaNHpkkTWaQ25GOqgEZkPsGLgjHiAp";
   const check = (category_id) => {
     switch (category_id) {
       case 1:
@@ -21,12 +22,12 @@ const SimilarProducts = ({ category_id }) => {
         return setId("sport-shoes");
     }
   };
-  console.log(id);
   useEffect(() => {
     check(category_id);
   }, []);
-  const { data } = useGetCategoryProductsQuery({ token, id });
+  const { data } = useGetCategoryProductsQuery({ id });
   const product = data?.data?.data;
+  console.log(product);
   return (
     <div>
       <div className="bg-white py-3 ">

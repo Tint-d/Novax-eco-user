@@ -7,10 +7,8 @@ import ReactLoading from "react-loading";
 
 const Category = () => {
   const [count, setCount] = useState(1);
-  const token = "65|iRd7eZ8g8KYaNHpkkTWaQ25GOqgEZkPsGLgjHiAp";
   const [value, setValue] = useState("food");
   const { data, isLoading } = useGetCategoryProductsQuery({
-    token,
     value,
     count,
   });

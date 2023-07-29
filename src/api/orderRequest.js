@@ -1,4 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+const token = "7|ggLBMfBtZKnRsyjBi559ybJftZHr8d3uCb7QrzPB";
+
 export const orderRequest = createApi({
   reducerPath: "orderRequest",
   baseQuery: fetchBaseQuery({
@@ -7,7 +9,7 @@ export const orderRequest = createApi({
   tagTypes: ["order"],
   endpoints: (builder) => ({
     addOrder: builder.mutation({
-      query: ({ token, values }) => {
+      query: ({ values }) => {
         const formData = new FormData();
         formData.set("order_id", values.order_id);
         formData.set("delivery_address", values.delivery_address);

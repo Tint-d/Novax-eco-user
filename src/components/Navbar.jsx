@@ -14,9 +14,9 @@ const Navbar = () => {
 
   const [value, setValue] = useState();
   const navigate = useNavigate();
-  const token = "65|iRd7eZ8g8KYaNHpkkTWaQ25GOqgEZkPsGLgjHiAp";
-  // const { data } = useSearchProductQuery({ token, value });
-
+  const { data } = useSearchProductQuery({ value });
+  const { data: count } = useGetAddToCartQuery();
+  console.log(count);
   const submitHandler = (e) => {
     e.preventDefault();
     navigate("/search", { state: { value } });
@@ -67,7 +67,7 @@ const Navbar = () => {
           <NavLink to="/invoice">
             <div className=" relative">
               <div className=" w-[25px] absolute h-[25px] top-[-20px] right-[-10px] rounded-full bg-brand  text-white font-bold flex items-center justify-center">
-                1
+                {count?.length}
               </div>
               <MdAddShoppingCart className=" yellow text-2xl  text-normal" />
             </div>

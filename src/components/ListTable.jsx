@@ -1,25 +1,38 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { BiPlus, BiMinus } from "react-icons/bi";
 import { FiTrash2 } from "react-icons/fi";
-import { useDeleteProductMutation } from "../api/userAction";
+import {
+  useDeleteProductMutation,
+  useGetAddToCartQuery,
+} from "../api/userAction";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useAddCountMutation } from "../api/addToCount";
 const ListTable = (props) => {
-  const token = "65|iRd7eZ8g8KYaNHpkkTWaQ25GOqgEZkPsGLgjHiAp";
-  const { product_name, total_price, item_count, cart_id } = props;
+  const { product_name, total_price, item_count, cart_id, setProduct } = props;
   const [count, setItem_count] = useState(item_count);
-  console.log(`Running${product_name}`);
+  const { data: toFetch, refetch } = useGetAddToCartQuery();
+  console.log(toFetch);
+  useEffect(() => {
+    setProduct(data);
+    refetch();
+    console.log(data);
+  }, [count]);
+  // console.log(`Running${product_name}`);
   const [deleteProduct] = useDeleteProductMutation();
-  const [addCount, error] = useAddCountMutation();
-  console.log(error);
-
+  const [addCount, data] = useAddCountMutation();
+  console.log(data);
   const add = () => {
+    addCount({ cart_id, action: 1 });
     setItem_count(count + 1);
-    addCount({ token, cart_id, action: 1 });
   };
   const minus = useCallback(() => {
     if (count > 1) {
-      setItem_count(count - 1);
-      addCount({ token, cart_id, action: 0 });
+      addCount({ cart_id, action: 0 })
+        .then(() => {
+          setItem_count(count - 1);
+        })
+        .catch((err) => console.log(err));
     }
   }, [item_count]);
 
@@ -48,7 +61,19 @@ const ListTable = (props) => {
       </div>
       <div className="w-2/12">
         <FiTrash2
-          onClick={() => deleteProduct({ token, cart_id })}
+          onClick={() => {
+            deleteProduct({ cart_id });
+            toast("Successful", {
+              position: "top-right",
+              autoClose: 2000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+          }}
           className=" text-red-700 mx-auto"
         />
       </div>

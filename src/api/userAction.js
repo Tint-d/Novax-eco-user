@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+const token = "7|ggLBMfBtZKnRsyjBi559ybJftZHr8d3uCb7QrzPB";
 export const userActionApi = createApi({
   reducerPath: "actionApi",
   baseQuery: fetchBaseQuery({
@@ -7,7 +8,7 @@ export const userActionApi = createApi({
   tagTypes: ["action"],
   endpoints: (builder) => ({
     addToCart: builder.mutation({
-      query: ({ token, value }) => ({
+      query: ({ value }) => ({
         url: `/add_to_cart`,
         body: value,
         headers: { authorization: `Bearer ${token}` },
@@ -16,14 +17,14 @@ export const userActionApi = createApi({
       invalidatesTags: ["action"],
     }),
     getAddToCart: builder.query({
-      query: (token) => ({
+      query: () => ({
         url: "/add_to_cart",
         headers: { authorization: `Bearer ${token}` },
       }),
       providesTags: ["action"],
     }),
     updateCount: builder.mutation({
-      query: ({ token, cart_id, action }) => ({
+      query: ({ cart_id, action }) => ({
         url: `/add_to_cart/?id=${cart_id}`,
         body: action,
         method: "PUT",
@@ -32,7 +33,7 @@ export const userActionApi = createApi({
       invalidatesTags: ["action"],
     }),
     deleteProduct: builder.mutation({
-      query: ({ token, cart_id }) => ({
+      query: ({ cart_id }) => ({
         url: `/add_to_cart/${cart_id}`,
         headers: { authorization: `Bearer ${token}` },
         method: `DELETE`,
@@ -40,7 +41,7 @@ export const userActionApi = createApi({
       invalidatesTags: ["action"],
     }),
     requestOrder: builder.query({
-      query: ({ token }) => ({
+      query: () => ({
         url: `/request_order`,
         headers: { authorization: `Bearer ${token}` },
         method: "GET",
@@ -48,7 +49,7 @@ export const userActionApi = createApi({
       providesTags: ["action"],
     }),
     getOrders: builder.query({
-      query: ({ token }) => ({
+      query: () => ({
         url: `/orders`,
         headers: { authorization: `Bearer ${token}` },
         method: "GET",

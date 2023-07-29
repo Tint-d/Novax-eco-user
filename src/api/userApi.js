@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+const token = "7|ggLBMfBtZKnRsyjBi559ybJftZHr8d3uCb7QrzPB";
 export const userApi = createApi({
   reducerPath: "userApi",
   baseQuery: fetchBaseQuery({
@@ -7,35 +8,35 @@ export const userApi = createApi({
   tagTypes: ["user"],
   endpoints: (builder) => ({
     getProducts: builder.query({
-      query: ({ token }) => ({
+      query: () => ({
         url: `/products?page=10`,
         headers: { authorization: `Bearer ${token}` },
       }),
       providesTags: ["user"],
     }),
     getLatestProducts: builder.query({
-      query: ({ token }) => ({
+      query: () => ({
         url: "/products?page=1",
         headers: { authorization: `Bearer ${token}` },
       }),
       providesTags: ["user"],
     }),
     getCategoryProducts: builder.query({
-      query: ({ token, value, count }) => ({
+      query: ({ value, count }) => ({
         url: `/products?category=${value}&page=${count}`,
         headers: { authorization: `Bearer ${token}` },
       }),
       providesTags: ["user"],
     }),
     getDetailsProduct: builder.query({
-      query: ({ token, detailId }) => ({
+      query: ({ detailId }) => ({
         url: `/products/${detailId}`,
         headers: { authorization: `Bearer ${token}` },
       }),
       providesTags: ["user"],
     }),
     searchProduct: builder.query({
-      query: ({ token, value }) => ({
+      query: ({ value }) => ({
         url: `/products?search=${value}`,
         headers: { authorization: `Bearer ${token}` },
       }),

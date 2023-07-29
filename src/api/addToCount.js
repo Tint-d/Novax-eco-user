@@ -1,4 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+const token = "7|ggLBMfBtZKnRsyjBi559ybJftZHr8d3uCb7QrzPB";
+
 export const addToCount = createApi({
   reducerPath: "addToCount",
 
@@ -8,9 +10,9 @@ export const addToCount = createApi({
   tagTypes: ["update"],
   endpoints: (builder) => ({
     addCount: builder.mutation({
-      query: ({ token, cart_id, action }) => ({
+      query: ({cart_id, action }) => ({
         url: `/add_to_cart/${cart_id}`,
-        body: {action},
+        body: { action },
         headers: { authorization: `Bearer ${token}` },
         method: "PUT",
       }),

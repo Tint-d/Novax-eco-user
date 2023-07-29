@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import ProductsCard from "./ProductsCard";
 import { IoIosArrowDown } from "react-icons/io";
 import { Pagination } from "@mantine/core";

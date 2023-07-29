@@ -71,7 +71,6 @@ const About = () => {
                 Our <span className=" text-brand">Mission</span>
               </h2>
             </AnimationLayout>
-
             <div className=" flex py-2 flex-col ">
               <div className="flex md:justify-start justify-around">
                 <h2 className=" md:w-3/12 w-4/12 text-header text-[18px] font-semibold">
