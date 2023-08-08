@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import ProductsCard from "./ProductsCard";
 import { IoIosArrowDown } from "react-icons/io";
@@ -13,12 +14,12 @@ const CategoryProduct = ({ data, count, setCount, value }) => {
           <hr className=" border-[#EBC500] mx-auto border-2 rounded-sm w-[50%]" />
         </div>
 
-        <button className=" flex gap-2 px-2 py-1 rounded-xl shadow bg-[#f5f5f5] items-center">
+        {/* <button className=" flex gap-2 px-2 py-1 rounded-xl shadow bg-[#f5f5f5] items-center">
           <h2 className=" text-[14px] font-medium text-normal">
             Sort by price
           </h2>
           <IoIosArrowDown />
-        </button>
+        </button> */}
       </div>
       <div className="  px-[3px]  flex flex-wrap gap-x-10 gap-y-5">
         {product?.map((item) => (

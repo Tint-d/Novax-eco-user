@@ -1,5 +1,5 @@
 import React from "react";
-import { Menu, Text } from "@mantine/core";
+import { Menu } from "@mantine/core";
 import { BsFillPersonFill } from "react-icons/bs";
 import { BiLogOutCircle } from "react-icons/bi";
 const NavProfile = () => {
@@ -16,7 +16,9 @@ const NavProfile = () => {
         <Menu.Dropdown>
           <Menu.Item icon={<BsFillPersonFill size={14} />}>Profile</Menu.Item>
           <Menu.Divider />
-          <Menu.Item color="red" icon={<BiLogOutCircle size={14} />}>Logout</Menu.Item>
+          <Menu.Item color="red" icon={<BiLogOutCircle size={14} />}>
+            Logout
+          </Menu.Item>
         </Menu.Dropdown>
       </Menu>
     </div>

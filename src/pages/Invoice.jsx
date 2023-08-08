@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import { useGetAddToCartQuery, useGetOrdersQuery } from "../api/userAction";
 import Layout from "../Layout";
@@ -14,33 +15,38 @@ import { NavLink } from "react-router-dom";
 
 const Invoice = () => {
   const { data, refetch } = useGetAddToCartQuery();
-  // const user = data[0]?.customer_name;
-  // const customerId = data[0]?.customer_id;
-  // console.log(data);
-  // const { data: order } = useRequestOrderQuery({ token });
   const { data: orderList } = useGetOrdersQuery();
-  // const orderId = orderList[0]?.order_id;
-  // console.log(orderId);
-  // console.log(orderList);
   const [product, setProduct] = useState();
-
+  let [user, setUser] = useState();
+  let [order, setOrder] = useState();
+  let [userId, setUserId] = useState();
   useEffect(() => {
     refetch();
     setProduct(data);
+    if (data) {
+      try {
+        //userName
+        let customer = data[0]?.customer_name;
+        setUser(customer);
+        //userId
+        let customerId = data[0]?.customer_id;
+        setUserId(customerId);
+        //orderId
+        let orderId = orderList[0]?.order_id;
+        setOrder(orderId);
+      } catch (e) {}
+    } else {
+    }
   }, []);
 
-  // console.log(data.length);
   const time = new Date();
   const date = time.toLocaleString();
   const [show, setShow] = useState(true);
-  console.log(data);
   const [opened, { open, close }] = useDisclosure(false);
-  console.log(data);
-  let total = data.reduce(
+  let total = data?.reduce(
     (itemPrice, addPrice) => itemPrice + addPrice.product.total_price,
     0
   );
-  console.log(total);
   return (
     <Layout>
       <Modal opened={opened} onClose={close} title="Payment Form" centered>
@@ -89,7 +95,9 @@ const Invoice = () => {
                   <h2 className=" text-header py-2 font-sans text-[20px]  font-medium">
                     Total
                   </h2>
-                  <h2 className=" text-header py-2 font-sans text-[20px] font-medium">${total}</h2>
+                  <h2 className=" text-header py-2 font-sans text-[20px] font-medium">
+                    ${total}
+                  </h2>
                 </div>
               </div>
             )}
@@ -108,12 +116,12 @@ const Invoice = () => {
             </div>
             <div className=" flex text-[13px]  font-semibold text-brand gap-x-3 w-fit">
               <h2 className="">Customer Name :</h2>
-              <h2 className=" text-header">{/* {user} */}</h2>
+              {user && <h2 className=" text-header">{user}</h2>}
             </div>
             <div className=" flex gap-y-3 flex-wrap  text-[13px] font-semibold text-brand  justify-between">
               <div className=" flex  gap-x-3 w-fit">
                 <h2 className="">Customer Id :</h2>
-                <h2 className="text-header">{/* {customerId} */}</h2>
+                {userId && <h2 className="text-header">{userId}</h2>}
               </div>
               <div className=" flex text-[13px] font-semibold text-brand gap-x-3 w-fit">
                 <h2 className="">Date :</h2>
@@ -148,7 +156,7 @@ const Invoice = () => {
                     </button>
                   </div>
                 ) : (
-                  <OrderForm />
+                  <OrderForm orderId={order} />
                 )}
               </div>
             </div>

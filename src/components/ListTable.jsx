@@ -5,23 +5,20 @@ import {
   useDeleteProductMutation,
   useGetAddToCartQuery,
 } from "../api/userAction";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useAddCountMutation } from "../api/addToCount";
 const ListTable = (props) => {
+  // eslint-disable-next-line react/prop-types
   const { product_name, total_price, item_count, cart_id, setProduct } = props;
   const [count, setItem_count] = useState(item_count);
-  const { data: toFetch, refetch } = useGetAddToCartQuery();
-  console.log(toFetch);
+  const { refetch } = useGetAddToCartQuery();
   useEffect(() => {
     setProduct(data);
     refetch();
-    console.log(data);
   }, [count]);
-  // console.log(`Running${product_name}`);
   const [deleteProduct] = useDeleteProductMutation();
   const [addCount, data] = useAddCountMutation();
-  console.log(data);
   const add = () => {
     addCount({ cart_id, action: 1 });
     setItem_count(count + 1);

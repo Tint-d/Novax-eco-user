@@ -1,27 +1,27 @@
 import { Input } from "@mantine/core";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { BsSearch } from "react-icons/bs";
 import { NavLink, useNavigate } from "react-router-dom";
 import { MdAddShoppingCart } from "react-icons/md";
 import "../css/nav.css";
-import { useSearchProductQuery } from "../api/userApi";
 import NavProfile from "./NavProfile";
 import { useGetAddToCartQuery } from "../api/userAction";
 import { RiListUnordered } from "react-icons/ri";
 import Menubar from "./Menubar";
 const Navbar = () => {
   const [hide, setHide] = useState(false);
-
-  const [value, setValue] = useState();
+  let searchItem = useRef();
   const navigate = useNavigate();
-  const { data } = useSearchProductQuery({ value });
   const { data: count } = useGetAddToCartQuery();
-  console.log(count);
+  let searchData = searchItem?.current?.value;
   const submitHandler = (e) => {
-    e.preventDefault();
-    navigate("/search", { state: { value } });
+    if (searchData) {
+      e.preventDefault();
+      navigate("/search", { state: { searchData } });
+    } else {
+      
+    }
   };
-
   return (
     <div className=" bg-white sticky top-0 z-[1000]">
       <div className="  container items-center flex-wrap py-2 flex justify-between mx-auto px-3 lg:px-10 ">
@@ -34,7 +34,7 @@ const Navbar = () => {
         <form className=" mx-auto py-2" onSubmit={submitHandler}>
           <div className=" md:w-[200px] w-[350px]  lg:w-[300px]">
             <Input
-              onChange={(e) => setValue(e.target.value)}
+              ref={searchItem}
               icon={<BsSearch />}
               size="xs"
               radius="xl"

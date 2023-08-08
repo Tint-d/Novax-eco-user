@@ -1,5 +1,3 @@
-import React, { useEffect, useState } from "react";
-import { data } from "../data/data";
 import ProductsCard from "./ProductsCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -9,8 +7,7 @@ import "swiper/css/navigation";
 import { useGetProductsQuery } from "../api/userApi";
 import AnimationLayout from "../AnimationLayout";
 const FeatuersProducts = () => {
-  const token = "65|iRd7eZ8g8KYaNHpkkTWaQ25GOqgEZkPsGLgjHiAp";
-  const { data } = useGetProductsQuery({ token });
+  const { data } = useGetProductsQuery();
   const product = data?.data?.data;
   return (
     <div className="bg-white py-3 ">

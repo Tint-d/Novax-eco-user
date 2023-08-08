@@ -9,7 +9,6 @@ import { useGetCategoryProductsQuery } from "../api/userApi";
 import ProductsCard from "./ProductsCard";
 const SimilarProducts = ({ category_id }) => {
   const [id, setId] = useState();
-  console.log("similar working");
   const check = (category_id) => {
     switch (category_id) {
       case 1:
@@ -27,7 +26,6 @@ const SimilarProducts = ({ category_id }) => {
   }, []);
   const { data } = useGetCategoryProductsQuery({ id });
   const product = data?.data?.data;
-  console.log(product);
   return (
     <div>
       <div className="bg-white py-3 ">

@@ -1,15 +1,15 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import { TextInput, FileInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useAddOrderMutation } from "../api/orderRequest";
 import { useRequestOrderQuery } from "../api/userAction";
 
-const OrderForm = (close) => {
-  const token = "65|iRd7eZ8g8KYaNHpkkTWaQ25GOqgEZkPsGLgjHiAp";
-  console.log("OrderForm");
+const OrderForm = ({ close, orderId }) => {
+  console.log(orderId);
   const form = useForm({
     initialValues: {
-      order_id: 57,
+      order_id: orderId,
       delivery_address: "",
       phone_number: null,
       payment_photo: null,
@@ -22,9 +22,9 @@ const OrderForm = (close) => {
     },
   });
   const [addOrder] = useAddOrderMutation();
-  const { data: order } = useRequestOrderQuery({ token });
-  console.log(order);
-  console.log(form.values);
+  // eslint-disable-next-line no-unused-vars
+  const { data } = useRequestOrderQuery();
+  console.log(data);
   return (
     <div>
       <div className="md:min-w-[350px] min-w-[300px] mx-auto overflow-hidden">
@@ -32,7 +32,7 @@ const OrderForm = (close) => {
           onSubmit={form.onSubmit(async (values, e) => {
             try {
               e.preventDefault();
-              const data = await addOrder({ token, values });
+              const data = await addOrder({ values });
               console.log(data);
               close();
             } catch (e) {

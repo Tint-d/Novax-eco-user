@@ -6,7 +6,6 @@ const AnimationLayout = ({ children }) => {
   const mainControl = useAnimation();
   useEffect(() => {
     if (isInView) {
-      console.log(isInView);
       mainControl.start("visible");
     }
   }, [isInView]);

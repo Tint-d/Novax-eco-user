@@ -19,8 +19,6 @@ const Detail = () => {
   const [addToCart] = useAddToCartMutation();
   const [disable, setDisable] = useState(true);
   const value = { item_count, product_id };
-
-  console.log(value);
   useEffect(() => {
     setDisable(true);
   }, [product_id]);

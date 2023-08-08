@@ -6,8 +6,8 @@ import Linkedin from "../svg/linkedin-linked-in-svgrepo-com.svg";
 import Github from "../svg/github-142-svgrepo-com.svg";
 import Facebook from "../svg/facebook-svgrepo-com.svg";
 const Footer = () => {
-    const date=new Date();
-    const year=date.getFullYear();
+  let date = new Date();
+  let year = date.getFullYear();
   return (
     <div className=" bg-header">
       <div className=" container  py-5 flex gap-y-5  flex-wrap justify-around mx-auto md:px-5 px-2 lg:px-10 ">
