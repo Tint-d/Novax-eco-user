@@ -1,3 +1,4 @@
+
 import { Input } from "@mantine/core";
 import React, { useRef, useState } from "react";
 import { BsSearch } from "react-icons/bs";
@@ -80,3 +81,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+

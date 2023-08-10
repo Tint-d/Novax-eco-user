@@ -7,6 +7,8 @@ import { userApi } from "../api/userApi";
 import { userActionApi } from "../api/userAction";
 import { orderRequest } from "../api/orderRequest";
 import { addToCount } from "../api/addToCount";
+import { productApi } from "./api/productApi";
+import { authApi } from "./api/authApi";
 const persistConfig = {
   key: "root",
   version: 1,
@@ -19,6 +21,9 @@ const reducer = combineReducers({
   [userActionApi.reducerPath]: userActionApi.reducer,
   [orderRequest.reducerPath]: orderRequest.reducer,
   [addToCount.reducerPath]: addToCount.reducer,
+  [productApi.reducerPath]: productApi.reducer,
+  [authApi.reducerPath]: authApi.reducer,
+
 });
 const persistedReducer = persistReducer(persistConfig, reducer);
 
@@ -33,6 +38,9 @@ export const store = configureStore({
       userApi.middleware,
       userActionApi.middleware,
       orderRequest.middleware,
-      addToCount.middleware
+      addToCount.middleware,
+      productApi.middleware,
+      authApi.middleware
     ),
+
 });
