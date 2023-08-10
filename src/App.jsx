@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+
 import Routes from "./routes/Routes";
-import { useGetProductQuery } from "./redux/api/productApi";
+import React, { useEffect } from "react";
 
 const App = () => {
   const token = `13|f5PkiYZFLZYiYjaFn1I9UFnlngX1jttmuH860TsW`;
@@ -28,7 +28,7 @@ const App = () => {
   };
 
   return (
-    <div>
+    <div className="bg-[#FCFCFC]">
       <Routes />
     </div>
   );
