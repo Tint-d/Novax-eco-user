@@ -4,6 +4,7 @@ import Layout from "../Layout";
 import CategoryProduct from "../components/CategoryProduct";
 import { useGetCategoryProductsQuery } from "../api/userApi";
 import ReactLoading from "react-loading";
+import DrawerSideBar from "../components/Drawer";
 
 const Category = () => {
   const [count, setCount] = useState(1);
@@ -27,6 +28,7 @@ const Category = () => {
   return (
     <Layout>
       <div className="min-h-screen flex relative bg-white">
+        <DrawerSideBar value={value} setValue={setValue} />
         <Sidebar value={value} setValue={setValue} />
         <CategoryProduct
           value={value}

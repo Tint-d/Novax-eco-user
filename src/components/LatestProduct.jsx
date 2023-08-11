@@ -13,7 +13,7 @@ const LatestProducts = () => {
   const product = data?.data?.data;
   return (
     <div className="bg-white py-3">
-      <div className="  container px-10 pb-5 mx-auto ">
+      <div className="  container md:px-5 px-3  lg:px-10 pb-5 mx-auto ">
         <div className=" relative py-3">
           <AnimationLayout>
             <h2 className="text-[30px] font-bold text-header">
@@ -24,9 +24,13 @@ const LatestProducts = () => {
         </div>
         <div className="py-2">
           <Swiper
-            slidesPerView={4}
+            breakpoints={{
+              320: { slidesPerView: 2, spaceBetween: 20 },
+              480: { slidesPerView: 2, spaceBetween: 20 },
+              768: { slidesPerView: 3, spaceBetween: 20 },
+              1024: { slidesPerView: 4, spaceBetween: 20 },
+            }}
             navigation={true}
-            spaceBetween={20}
             pagination={{
               clickable: true,
             }}

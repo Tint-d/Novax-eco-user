@@ -14,6 +14,6 @@ const Home = () => {
       <LatestProducts />
     </Layout>
   );
-
+};
 
 export default Home;

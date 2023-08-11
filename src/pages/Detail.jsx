@@ -52,10 +52,10 @@ const Detail = () => {
   return (
     <Layout>
       <div className=" min-h-screen bg-white">
-        <div className="container flex justify-center items-center py-5  mx-auto px-10">
+        <div className="container  flex justify-center items-center py-5  mx-auto px-5 lg:px-10">
           <ToastContainer />
-          <div className=" flex ">
-            <div className=" w-[400px]">
+          <div className=" flex flex-wrap justify-around">
+            <div className=" w-[350px] md:w-[320px] lg:w-[400px]">
               <img
                 className=" object-cover h-[400px]"
                 src={product?.images[0].name}
@@ -65,7 +65,7 @@ const Detail = () => {
                 {product?.images?.map((img) => (
                   <div key={img.id} className=" w-[93px]">
                     <img
-                      className=" rounded-md h-[93px] object-cover"
+                      className="rounded-md md:h-[93px] lg:h-[100px] object-cover"
                       src={img.name}
                       alt=""
                     />
@@ -73,7 +73,7 @@ const Detail = () => {
                 ))}
               </div>
             </div>
-            <div className=" w-[380px] px-8 items-center  flex-col">
+            <div className=" w-[380px] px-6 md:px-5 lg:px-8 items-center  flex-col">
               <h2 className=" text-[32px] pt-3 text-header font-bold">
                 {product?.title}
               </h2>

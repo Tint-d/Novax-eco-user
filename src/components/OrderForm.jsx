@@ -4,7 +4,8 @@ import { TextInput, FileInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useAddOrderMutation } from "../api/orderRequest";
 import { useRequestOrderQuery } from "../api/userAction";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const OrderForm = ({ close, orderId }) => {
   console.log(orderId);
   const form = useForm({
@@ -27,14 +28,39 @@ const OrderForm = ({ close, orderId }) => {
   console.log(data);
   return (
     <div>
+      <ToastContainer />
       <div className="md:min-w-[350px] min-w-[300px] mx-auto overflow-hidden">
         <form
           onSubmit={form.onSubmit(async (values, e) => {
             try {
               e.preventDefault();
-              const data = await addOrder({ values });
-              console.log(data);
-              close();
+              console.log(values);
+              const data = await addOrder({ values }).then((data) => {
+                if (data?.data?.success) {
+                  toast("OrderConfirmed", {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                  });
+                  close();
+                } else {
+                  toast.error("OrderFailed!!", {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                  });
+                }
+              });
             } catch (e) {
               console.log(e);
             }

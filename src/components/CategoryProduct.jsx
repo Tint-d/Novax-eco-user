@@ -21,7 +21,7 @@ const CategoryProduct = ({ data, count, setCount, value }) => {
           <IoIosArrowDown />
         </button> */}
       </div>
-      <div className="  px-[3px]  flex flex-wrap gap-x-10 gap-y-5">
+      <div className=" px-1  lg:px-[3px]  md:justify-start justify-around  flex flex-wrap md:gap-x-5 gap-x-2  lg:gap-x-10 gap-y-5">
         {product?.map((item) => (
           <ProductsCard key={item?.id} {...item} />
         ))}
